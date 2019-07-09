@@ -6,10 +6,12 @@ var story = "Once upon a time %s bought a %s and thought it was the most %s obje
 
 onready var PlayerText = $VBoxContainer/HBoxContainer/PlayerText
 onready var DisplayText = $VBoxContainer/DisplayText
+onready var ButtonText = $VBoxContainer/HBoxContainer/Label
 
 func _ready():
 	DisplayText.text = "Welcome to Loony Lips!"
 	check_player_words_length()
+	PlayerText.grab_focus()
 
 
 func _on_PlayerText_text_entered(new_text):
@@ -17,7 +19,10 @@ func _on_PlayerText_text_entered(new_text):
 
 
 func _on_TextureButton_pressed():
-	add_to_player_words()
+	if is_story_done():
+		get_tree().reload_current_scene()
+	else:
+		add_to_player_words()
 
 
 func add_to_player_words():
@@ -33,7 +38,7 @@ func is_story_done():
 
 func check_player_words_length():
 	if is_story_done():
-		tell_story()
+		end_game()
 	else:
 		prompt_player()
 
@@ -44,3 +49,9 @@ func tell_story():
 
 func prompt_player():
 	DisplayText.text += "May I have " + prompts[player_words.size()] + " please?"
+
+
+func end_game():
+	PlayerText.queue_free()
+	ButtonText.text = "Again!"
+	tell_story()

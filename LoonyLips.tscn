@@ -52,16 +52,17 @@ margin_top = 479.0
 margin_right = 976.0
 margin_bottom = 552.0
 custom_constants/separation = 12
+alignment = 2
 
 [node name="PlayerText" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
-margin_right = 795.0
+margin_right = 810.0
 margin_bottom = 73.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
 
 [node name="TextureButton" type="TextureButton" parent="VBoxContainer/HBoxContainer"]
-margin_left = 807.0
-margin_right = 880.0
+margin_left = 822.0
+margin_right = 895.0
 margin_bottom = 73.0
 rect_min_size = Vector2( 73, 73 )
 texture_normal = ExtResource( 4 )
@@ -69,11 +70,11 @@ texture_pressed = ExtResource( 5 )
 expand = true
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
-margin_left = 892.0
+margin_left = 907.0
 margin_top = 5.0
 margin_right = 976.0
 margin_bottom = 68.0
 custom_fonts/font = SubResource( 3 )
-text = "OK!"
+text = "OK"
 [connection signal="text_entered" from="VBoxContainer/HBoxContainer/PlayerText" to="." method="_on_PlayerText_text_entered"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/TextureButton" to="." method="_on_TextureButton_pressed"]
