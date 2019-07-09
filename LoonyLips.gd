@@ -1,16 +1,6 @@
 extends Control
 
 var player_words = []
-#var template = [ 
-#	{
-#		"prompts" : ["a name", "a noun", "adjetive", "adverb"],
-#		"story" : "Once upon a time %s bought a new %s and thought it was the most %s and %s belonging he had."
-#	},
-#	{
-#		"prompts": ["a season", "a place", "a country", "a feeling"],
-#		"story" : "Last %s Peter went to a %s in %s and fel very %s."
-#	}
-#	]
 var current_story = {}
 
 onready var PlayerText = $VBoxContainer/HBoxContainer/PlayerText
@@ -26,10 +16,23 @@ func _ready():
 
 func set_current_story():
 	randomize()
-	var stories = $StoryBook.get_child_count()
-	var selected_storie = randi() % stories
-	current_story.prompts = $StoryBook.get_child(selected_storie).prompts
-	current_story.story = $StoryBook.get_child(selected_storie).story
+	# Option 1
+#	var stories = $StoryBook.get_child_count()
+#	var selected_storie = randi() % stories
+#	current_story.prompts = $StoryBook.get_child(selected_storie).prompts
+#	current_story.story = $StoryBook.get_child(selected_storie).story
+	# Option 2
+	var stories = get_from_json("StoryBook.json")
+	current_story = stories[randi() % stories.size()]
+	
+	
+func get_from_json(filename):
+	var file = File.new()
+	file.open(filename, File.READ)
+	var text = file.get_as_text()
+	var data = parse_json(text)
+	file.close()
+	return data
 
 
 func _on_PlayerText_text_entered(new_text):
