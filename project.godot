@@ -15,7 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Godot2D_LoonyLips_3.1_v1"
+config/name="Godot2D_LoonyLips_3.1"
 run/main_scene="res://LoonyLips.tscn"
 config/icon="res://icon.png"
 
